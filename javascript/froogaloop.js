@@ -118,9 +118,9 @@ var Froogaloop = (function(){
      * @param target (HTMLElement): Target iframe to post the message to.
      */
     function postMessage(method, params, target) {
-        if (!target.contentWindow.postMessage) {
-            return false;
-        }
+      if (target.contentWindow == undefined || target.contentWindow === null || !target.contentWindow.postMessage) {
+        return false;
+      }
 
         var url = target.getAttribute('src').split('?')[0],
             data = JSON.stringify({
